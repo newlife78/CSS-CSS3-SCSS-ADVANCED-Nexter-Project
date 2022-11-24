@@ -1,0 +1,52 @@
+/* PROJECT VARIABLES */
+
+:root {
+  /* Typography - Size */
+
+  /* Typography - Weight */
+  --font-super-light: 100;
+  --font-light: 300;
+  --font-regular: 400;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+
+  /* Color - Brand */
+  --color-primary: #c69963;
+  --color-primary-dark: #b28451;
+
+  /* Color - Extended */
+  --color-secondary: #101d2c;
+
+  /* Color - Neutral */
+  --color-white: #ffffff;
+  --color-grey-light-1: #f9f7f6;
+  --color-grey-light-2: #aaa;
+  --color-grey-dark-1: #54483a;
+  --color-grey-dark-2: #6d5d4b;
+
+  /* Color - Blurs */
+  --color-black-blur-xxs: rgba(0, 0, 0, 0.1);
+  --color-black-blur-s: rgba(0, 0, 0, 0.2);
+  --color-black-blur-xm: rgba(0, 0, 0, 0.5);
+  --color-primary-blur-xm: rgba(198, 153, 99, 0.5);
+  --color-black-blur-xm: rgba(0, 0, 0, 0.5);
+  --color-white-blur-xxxs: rgba(255, 255, 255, 0.05);
+  --color-secondary-blur-xxl: rgba(16, 29, 44, 0.93);
+
+  /* Border */
+  --border-s: 1px solid var(--color-grey-light-2);
+
+  /* Border Radius */
+  --border-radius-semi-rounded: 50%;
+
+  /*! App Settings */
+  --font-primary: "Nunito", sans-serif;
+  --font-display: "Josefin Sans", sans-serif;
+  --line-height: 1.6;
+}
+
+// Breakpoints for @mixins media queries:
+$bp-phone: 37.5em;
+$bp-tab-port: 50em;
+$bp-tab-land: 62.5em;
+$bp-desktop: 75em;

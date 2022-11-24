@@ -1,0 +1,628 @@
+/* PROJECT FUNCTIONS */ /* PROJECT MIXINS */
+/*
+  0 - 600px:    Phone
+  600 - 900px:  Tablet Portrait
+  900 - 1200px: Tablet Landscape
+  [1200 - 18800] is where our normal style apply / DESKTOP FIRST APPROACH
+  1800px +:     Big Desktop
+
+
+  $breakpoint argument choices:
+  - phone
+  - tab-port
+  - tab-land
+  - big-desktop
+
+  1em = 16px
+  NOTE:
+    . Browser default value.
+    . Can be changed by the user
+    . If changed, it will become the default value and change all the settings defined.
+    . Use the relation of 1em = 16px and NOT 1rem = 16px, because this last relation can fail in some browsers.
+
+  ORDER TO TREAT SPECIFIC ADJUSTMENTS:
+  Base + Typography > General Layout + Grid > Page Layout > Components
+  */
+/* PROJECT VARIABLES */
+:root {
+  /* Typography - Size */
+  /* Typography - Weight */
+  --font-super-light: 100;
+  --font-light: 300;
+  --font-regular: 400;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+  /* Color - Brand */
+  --color-primary: #c69963;
+  --color-primary-dark: #b28451;
+  /* Color - Extended */
+  --color-secondary: #101d2c;
+  /* Color - Neutral */
+  --color-white: #ffffff;
+  --color-grey-light-1: #f9f7f6;
+  --color-grey-light-2: #aaa;
+  --color-grey-dark-1: #54483a;
+  --color-grey-dark-2: #6d5d4b;
+  /* Color - Blurs */
+  --color-black-blur-xxs: rgba(0, 0, 0, 0.1);
+  --color-black-blur-s: rgba(0, 0, 0, 0.2);
+  --color-black-blur-xm: rgba(0, 0, 0, 0.5);
+  --color-primary-blur-xm: rgba(198, 153, 99, 0.5);
+  --color-black-blur-xm: rgba(0, 0, 0, 0.5);
+  --color-white-blur-xxxs: rgba(255, 255, 255, 0.05);
+  --color-secondary-blur-xxl: rgba(16, 29, 44, 0.93);
+  /* Border */
+  --border-s: 1px solid var(--color-grey-light-2);
+  /* Border Radius */
+  --border-radius-semi-rounded: 50%;
+  /*! App Settings */
+  --font-primary: "Nunito", sans-serif;
+  --font-display: "Josefin Sans", sans-serif;
+  --line-height: 1.6;
+}
+
+/* PROJECT ANIMATIONS */ /* PROJECT BASIC SETTINGS */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+/* PROJECT TYPPOGRAPHY */
+/* Body Typography */
+body {
+  font-family: var(--font-primary);
+  font-weight: var(--font-light);
+  line-height: var(--line-height);
+  color: var(--color-grey-dark-2);
+}
+
+/* Header Typography */
+/* Headings Typography */
+.heading-4, .heading-3, .heading-2, .heading-1 {
+  font-family: var(--font-display);
+  font-weight: var(--font-regular);
+}
+
+.heading-1 {
+  font-size: 4.5rem;
+  color: var(--color-grey-light-1);
+  line-height: 1;
+}
+
+.heading-2 {
+  font-size: 4rem;
+  font-style: italic;
+  line-height: 1;
+}
+.heading-2--light {
+  color: var(--color-grey-light-1);
+}
+.heading-2--dark {
+  color: var(--color-grey-dark-1);
+}
+
+.heading-3 {
+  font-size: 1.6rem;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+.heading-4 {
+  font-size: 1.9rem;
+}
+.heading-4--light {
+  color: var(--color-grey-light-1);
+}
+.heading-4--dark {
+  color: var(--color-grey-dark-1);
+}
+
+/* PROJECT UTILITIES */
+/* Utilities Margin Bottom */
+.u-margin-bottom-s {
+  margin-bottom: 2rem !important;
+}
+
+.u-margin-bottom-m {
+  margin-bottom: 3rem !important;
+}
+
+.u-margin-bottom-l {
+  margin-bottom: 4rem !important;
+}
+
+.u-margin-bottom-xl {
+  margin-bottom: 8rem !important;
+}
+
+/* COMPONENT: Button */
+.btn {
+  border: none;
+  border-radius: 0;
+}
+.btn__header, .btn__story, .btn__home {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  padding: 1.8rem 3rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn__header:hover, .btn__story:hover, .btn__home:hover {
+  background-color: var(--color-primary-dark);
+}
+.btn__header {
+  align-self: start;
+  justify-self: start;
+}
+.btn__nav-sidebar {
+  background-color: var(--color-white);
+  height: 2px;
+  width: 4.5rem;
+  margin-top: 4rem;
+}
+.btn__nav-sidebar::before, .btn__nav-sidebar::after {
+  content: "";
+  background-color: var(--color-white);
+  height: 2px;
+  width: 4.5rem;
+  display: block;
+}
+.btn__nav-sidebar::before {
+  transform: translateY(-1.5rem);
+}
+.btn__nav-sidebar::after {
+  transform: translateY(1.3rem);
+}
+@media only screen and (max-width: 62.5em) {
+  .btn__nav-sidebar {
+    margin-top: 0;
+    margin-right: 3rem;
+  }
+  .btn__nav-sidebar::before {
+    transform: translateY(-1.2rem);
+  }
+  .btn__nav-sidebar::after {
+    transform: translateY(1rem);
+  }
+}
+
+/* PROJECT COMPONENTS: Feacture */
+.feature {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  row-gap: 1.5rem;
+  column-gap: 2.5rem;
+}
+.feature__icon {
+  fill: var(--color-primary);
+  height: 4.5rem;
+  width: 4.5rem;
+  grid-row: 1/span 2;
+  transform: translateY(-1rem);
+}
+.feature__text {
+  font-size: 1.7rem;
+}
+
+/* PROJECT COMPONENTS: Home */
+.home {
+  background-color: var(--color-grey-light-1);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 3.5rem;
+}
+.home__img {
+  width: 100%;
+  grid-row: 1/2;
+  grid-column: 1/-1;
+  z-index: 10;
+}
+.home__like {
+  grid-row: 1/2;
+  grid-column: 2/3;
+  justify-self: end;
+  fill: var(--color-primary);
+  height: 2.5rem;
+  width: 2.5rem;
+  margin: 1rem;
+  z-index: 20;
+}
+.home__name {
+  grid-row: 1/2;
+  grid-column: 1/-1;
+  width: 80%;
+  justify-self: center;
+  align-self: end;
+  z-index: 20;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: var(--font-regular);
+  color: var(--color-white);
+  text-align: center;
+  padding: 1.25rem;
+  background-color: var(--color-secondary);
+  transform: translateY(50%);
+}
+.home__location, .home__rooms, .home__area, .home__price {
+  font-size: 1.5rem;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.home__location svg, .home__rooms svg, .home__area svg, .home__price svg {
+  fill: var(--color-primary);
+  height: 2rem;
+  width: 2rem;
+}
+.home__location, .home__rooms {
+  margin-top: 2.5rem;
+}
+.home .btn__home {
+  grid-column: 1/-1;
+}
+
+/* PROJECT COMPONENTS: Realtors */
+.realtors {
+  background-color: var(--color-secondary);
+  grid-column: col-start 7/full-end;
+  padding: 3rem;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  gap: 2rem;
+}
+@media only screen and (max-width: 50em) {
+  .realtors {
+    grid-column: full-start/-1;
+  }
+}
+.realtors__list {
+  display: grid;
+  grid-template-columns: min-content max-content;
+  row-gap: 5vh;
+  column-gap: 2rem;
+  align-items: center;
+}
+@media only screen and (max-width: 50em) {
+  .realtors__list {
+    grid-template-columns: repeat(3, min-content max-content);
+    column-gap: 2.5rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .realtors__list {
+    grid-template-columns: min-content max-content;
+  }
+}
+.realtors__img {
+  width: 7rem;
+  border-radius: var(--border-radius-semi-rounded);
+  display: block;
+}
+.realtors__sold {
+  text-transform: uppercase;
+  color: var(--color-grey-light-2);
+  margin-top: -3px;
+}
+
+/* PROJECT LAYOUT: Footer */
+.footer {
+  background-color: var(--color-secondary);
+  grid-column: full-start/full-end;
+  padding: 8rem;
+}
+.footer__nav {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 2rem;
+  align-items: center;
+}
+.footer__nav-link:link, .footer__nav-link:visited {
+  font-size: 1.4rem;
+  font-family: var(--font-display);
+  color: var(--color-white);
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 1.5rem;
+  display: block;
+  transition: all 0.2s;
+}
+.footer__nav-link:hover, .footer__nav-link:active {
+  background-color: var(--color-white-blur-xxxs);
+  transform: translateY(-3px);
+}
+.footer__copyright {
+  font-size: 1.4rem;
+  color: var(--color-grey-light-2);
+  margin-top: 6rem;
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+.footer__link:link, .footer__link:visited {
+  color: var(--color-grey-light-1);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.footer__link:hover, .footer__link:active {
+  background-color: var(--color-white-blur-xxxs);
+  transform: translateY(-3px);
+}
+
+/* PROJECT LAYOUT: General Grid Layout */
+.general-grid-layout {
+  display: grid;
+  grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+  grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+}
+@media only screen and (max-width: 62.5em) {
+  .general-grid-layout {
+    grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+    grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+  }
+}
+@media only screen and (max-width: 50em) {
+  .general-grid-layout {
+    grid-template-rows: 6rem calc(100vh - 6rem);
+  }
+}
+
+/* PROJECT LAYOUT: Grids */ /* PROJECT LAYOUT: Header */
+/* Header Layout */
+.header {
+  background-color: var(--color-grey-dark-1);
+  grid-column: full-start/col-end 6;
+  background-image: linear-gradient(var(--color-secondary-blur-xxl), var(--color-secondary-blur-xxl)), url(../img/hero.jpeg);
+  background-size: cover;
+  background-position: center;
+  padding: 8rem;
+  padding-top: 4rem;
+  display: grid;
+  grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr;
+  grid-template-columns: minmax(min-content, max-content);
+  row-gap: 1.5rem;
+  justify-content: center;
+}
+@media only screen and (max-width: 50em) {
+  .header {
+    grid-column: full-start/-1;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .header {
+    padding: 5rem;
+  }
+}
+.header__logo {
+  height: 3rem;
+  justify-self: center;
+}
+.header__seenon-text {
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  column-gap: 1.5rem;
+  align-items: center;
+  font-size: 1.6rem;
+  color: var(--color-grey-light-2);
+}
+.header__seenon-text::before, .header__seenon-text::after {
+  content: "";
+  height: 1px;
+  display: block;
+  background-color: currentColor;
+}
+.header__seenon-logos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 3rem;
+  justify-items: center;
+  align-items: center;
+}
+.header__seenon-logos img {
+  max-height: 2.5rem;
+  max-width: 100%;
+  filter: brightness(70%);
+}
+
+/* PROJECT LAYOUT: Sidebar */
+.sidebar {
+  background-color: var(--color-primary);
+  grid-row: 1/-1;
+  grid-column: sidebar-start/sidebar-end;
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (max-width: 62.5em) {
+  .sidebar {
+    grid-row: 1/2;
+    grid-column: 1/-1;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+/* PROJECT PAGES: Home Page */
+.features {
+  grid-column: center-start/center-end;
+  margin: 15rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 6rem;
+  align-items: start;
+}
+@media only screen and (max-width: 37.5em) {
+  .features {
+    margin: 10rem 0;
+  }
+}
+
+.story__pictures {
+  background-color: var(--color-primary);
+  grid-column: full-start/col-end 4;
+  background-image: linear-gradient(var(--color-primary-blur-xm), var(--color-primary-blur-xm)), url(../img/back.jpg);
+  background-size: cover;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+}
+@media only screen and (max-width: 50em) {
+  .story__pictures {
+    grid-column: full-start/-1;
+    padding: 6rem;
+  }
+}
+.story__img--1 {
+  width: 100%;
+  grid-row: 2/6;
+  grid-column: 2/6;
+  box-shadow: 0 2rem 5rem var(--color-black-blur-xxs);
+}
+@media only screen and (max-width: 50em) {
+  .story__img--1 {
+    grid-row: 1/-1;
+    grid-column: 1/5;
+  }
+}
+.story__img--2 {
+  width: 115%;
+  grid-row: 4/6;
+  grid-column: 4/7;
+  z-index: 10;
+  box-shadow: 0 2rem 5rem var(--color-black-blur-s);
+}
+@media only screen and (max-width: 50em) {
+  .story__img--2 {
+    width: 100%;
+    grid-row: 1/-1;
+  }
+}
+.story__content {
+  background-color: var(--color-grey-light-1);
+  grid-column: col-start 5/full-end;
+  padding: 6rem 8vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+@media only screen and (max-width: 50em) {
+  .story__content {
+    grid-column: full-start/-1;
+    grid-row: 5/6;
+  }
+}
+.story__text {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 4rem;
+}
+
+.homes {
+  grid-column: center-start/center-end;
+  margin: 15rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 7rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .homes {
+    margin: 10rem 0;
+  }
+}
+
+.gallery {
+  background-color: var(--color-grey-light-1);
+  grid-column: full-start/full-end;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(7, 5vw);
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+.gallery__item--1 {
+  grid-row: 1/span 2;
+  grid-column: 1/span 2;
+}
+.gallery__item--2 {
+  grid-row: 1/span 3;
+  grid-column: 3/span 3;
+}
+.gallery__item--3 {
+  grid-row: 1/span 2;
+  grid-column: 6/7;
+}
+.gallery__item--4 {
+  grid-row: 1/span 2;
+  grid-column: 7/-1;
+}
+.gallery__item--5 {
+  grid-row: 3/span 3;
+  grid-column: 1/span 2;
+}
+.gallery__item--6 {
+  grid-row: 4/span 2;
+  grid-column: 3/span 2;
+}
+.gallery__item--7 {
+  grid-row: 4/5;
+  grid-column: 5/6;
+}
+.gallery__item--8 {
+  grid-row: 3/span 2;
+  grid-column: 6/span 2;
+}
+.gallery__item--9 {
+  grid-row: 3/span 3;
+  grid-column: 8/-1;
+}
+.gallery__item--10 {
+  grid-row: 6/span 2;
+  grid-column: 1/2;
+}
+.gallery__item--11 {
+  grid-row: 6/span 2;
+  grid-column: 2/span 2;
+}
+.gallery__item--12 {
+  grid-row: 6/span 2;
+  grid-column: 4/5;
+}
+.gallery__item--13 {
+  grid-row: 5/span 3;
+  grid-column: 5/span 3;
+}
+.gallery__item--14 {
+  grid-row: 6/-1;
+  grid-column: 8/-1;
+}
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/*# sourceMappingURL=style.comp.css.map */

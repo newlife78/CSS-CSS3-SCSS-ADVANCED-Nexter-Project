@@ -1,0 +1,57 @@
+/* PROJECT MIXINS */
+
+//MEDIA QUERY MANAGER
+/*
+  0 - 600px:    Phone
+  600 - 900px:  Tablet Portrait
+  900 - 1200px: Tablet Landscape
+  [1200 - 18800] is where our normal style apply / DESKTOP FIRST APPROACH
+  1800px +:     Big Desktop
+  
+  
+  $breakpoint argument choices:
+  - phone
+  - tab-port
+  - tab-land
+  - big-desktop
+
+  1em = 16px
+  NOTE:
+    . Browser default value.
+    . Can be changed by the user
+    . If changed, it will become the default value and change all the settings defined.
+    . Use the relation of 1em = 16px and NOT 1rem = 16px, because this last relation can fail in some browsers.
+  
+  ORDER TO TREAT SPECIFIC ADJUSTMENTS:
+  Base + Typography > General Layout + Grid > Page Layout > Components
+  */
+
+@mixin respond($breakpoint) {
+  //600px = 37.5em
+  @if $breakpoint == phone {
+    @media only screen and (max-width: $bp-phone) {
+      @content;
+    }
+  }
+
+  //800px = 50em
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: $bp-tab-port) {
+      @content;
+    }
+  }
+
+  //1000px = 62.5em
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: $bp-tab-land) {
+      @content;
+    }
+  }
+
+  //1200px = 75em
+  @if $breakpoint == desktop {
+    @media only screen and (max-width: $bp-desktop) {
+      @content;
+    }
+  }
+}

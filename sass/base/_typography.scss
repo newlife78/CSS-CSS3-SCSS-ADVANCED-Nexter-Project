@@ -1,0 +1,57 @@
+/* PROJECT TYPPOGRAPHY */
+
+/* Body Typography */
+body {
+  font-family: var(--font-primary);
+  font-weight: var(--font-light);
+  line-height: var(--line-height);
+  color: var(--color-grey-dark-2);
+}
+
+/* Header Typography */
+
+/* Headings Typography */
+%heading {
+  font-family: var(--font-display);
+  font-weight: var(--font-regular);
+}
+
+.heading-1 {
+  @extend %heading;
+  font-size: 4.5rem;
+  color: var(--color-grey-light-1);
+  line-height: 1;
+}
+
+.heading-2 {
+  @extend %heading;
+  font-size: 4rem;
+  font-style: italic;
+  line-height: 1;
+
+  &--light {
+    color: var(--color-grey-light-1);
+  }
+  &--dark {
+    color: var(--color-grey-dark-1);
+  }
+}
+
+.heading-3 {
+  @extend %heading;
+  font-size: 1.6rem;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+.heading-4 {
+  @extend %heading;
+  font-size: 1.9rem;
+
+  &--light {
+    color: var(--color-grey-light-1);
+  }
+  &--dark {
+    color: var(--color-grey-dark-1);
+  }
+}

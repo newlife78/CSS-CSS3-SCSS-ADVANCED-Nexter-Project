@@ -1,0 +1,64 @@
+/* PROJECT LAYOUT: Footer */
+
+.footer {
+  background-color: var(--color-secondary);
+  grid-column: full-start / full-end;
+  padding: 8rem;
+
+  &__nav {
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 2rem;
+    align-items: center;
+
+    &-item {
+    }
+
+    &-link:link,
+    &-link:visited {
+      font-size: 1.4rem;
+      font-family: var(--font-display);
+      color: var(--color-white);
+      text-decoration: none;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 1.5rem;
+      display: block;
+      transition: all 0.2s;
+    }
+
+    &-link:hover,
+    &-link:active {
+      background-color: var(--color-white-blur-xxxs);
+      transform: translateY(-3px);
+    }
+  }
+
+  &__copyright {
+    font-size: 1.4rem;
+    color: var(--color-grey-light-2);
+    margin-top: 6rem;
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 2rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      color: var(--color-grey-light-1);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    &:hover,
+    &:active {
+      background-color: var(--color-white-blur-xxxs);
+      transform: translateY(-3px);
+    }
+  }
+}
